@@ -65,14 +65,17 @@ def a4(rides):
     rides['starttime'] = pd.to_datetime(rides['starttime'])
 
     ## Method 1
-    df = rides
-    df = df[(df.starttime.dt.dayofweek < 5) & df['User Type'].eq('Subscriber')]
-    g = np.round(df.groupby(df.starttime.dt.dayofweek).tripduration.mean(), 2)
-    return g
+    # df = rides
+    # df = df[(df.starttime.dt.dayofweek < 5) & df['User Type'].eq('Subscriber')]
+    # g = np.round(df.groupby(df.starttime.dt.dayofweek).tripduration.mean(), 2)
+    # print g
+    # return g
 
     ## Method 2
-    # m = (rides['starttime'].dt.dayofweek < 5) & (rides['User Type'] == 'Subscriber')
-    # return round(rides.loc[m, 'tripduration'].mean(), 2)
+    m = (rides['starttime'].dt.dayofweek < 5) & (rides['User Type'] == 'Subscriber')
+    mean_trip_duration = round(rides.loc[m, 'tripduration'].mean(), 2)
+    print mean_trip_duration
+    return mean_trip_duration
 
     ## with weekday_name
     # df1 = rides[(rides['User Type'] == 'Subscriber') & (rides['starttime'].dt.dayofweek < 5)]
