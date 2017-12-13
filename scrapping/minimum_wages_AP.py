@@ -1,19 +1,18 @@
 #!/usr/bin/python
-"""minimum-wages-andhra-pradesh"""
+## minimum-wages-andhra-pradesh"""
 
-"""# import required modules"""
+## import required modules"""
 from bs4 import BeautifulSoup
 import requests
 import urllib2
-import pandas as pd
 import csv
 import os
 
-"""# define url"""
+## define url"""
 url = "http://www.labourlawreporter.com/2017/minimum-wages-andhra-pradesh/"
 page = requests.get(url)
 
-"""# check if page is opened or not"""
+## check if page is opened or not"""
 if page.status_code == 200:
     print "URL OPEN SUCCESSFULLY",page.status_code
 else:
@@ -33,8 +32,7 @@ dir_name = "csv"
 if not os.path.exists(dir_name):
     os.mkdir(dir_name)
 
-# import pdb;pdb.set_trace()
-"""# define csv file name & write headers"""
+## define csv file name & write headers"""
 csvFileName = "minimum-wages_Output_AP.csv"
 csvFilePath = os.path.join(current_path, dir_name, csvFileName)
 csvFile = open(csvFilePath, "a")
@@ -43,10 +41,10 @@ headers = ["Skill","Industry Name","Basic Wages","V.D.A","Total"]
 writer.writerow(headers)
 
 
-"""# find required table"""
+## find required table"""
 right_table = soup.find("table", width="528")
 
-"""# find tr data fromn table"""
+## find tr data fromn table"""
 for row in right_table.findAll("tr"):
     cells = row.findAll("td")
     if len(cells) == 6:
